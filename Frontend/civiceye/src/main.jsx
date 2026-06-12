@@ -8,12 +8,12 @@ import { CEUserProfile } from './CE/CEUserProfile.jsx'
 import { CESignup } from './CE/CESignup.jsx'
 import { CEGuestHomePage } from './CE/CEGuestHomePage.jsx'
 import { CEUserHomePage } from './CE/CEUserHomePage.jsx'
-import CEMyComplaints from './CE/CEMyComplaints.jsx'
+import { CEMyComplaints } from './CE/CEMyComplaints.jsx'
 import { CEAdminUserManagement } from './CE/CEAdminUserManagement.jsx'
 import { CEAdminDashboard } from './CE/CEAdminDashboard.jsx'
 import { CEAdminComplaints } from './CE/CEAdminComplaints.jsx'
 import { CEAdminFeedback } from './CE/CEAdminFeedback.jsx'
-import CEOfficialDashboard from './CE/CEOfficialDashboard.jsx'
+import { CEOfficialDashboard } from './CE/CEOfficialDashboard.jsx'
 import { CEOfficialComplaints } from './CE/CEOfficialComplaints.jsx'
 
 createRoot(document.getElementById('root')).render(
@@ -34,10 +34,10 @@ createRoot(document.getElementById('root')).render(
         <Route path='/userlist' element={<CEAdminUserManagement />} />
         {/* <Route path='/complaints' element={<CEAdminComplaints />} /> */}
         <Route path='/feedback' element={<CEAdminFeedback />} />
-        <Route path='dash' element={<CEOfficialDashboard/>}/>
-        <Route path='com' element={<CEOfficialComplaints/>}/>
+        <Route path='dash' element={<CEOfficialDashboard />} />
+        <Route path='com' element={<CEOfficialComplaints />} />
       </Routes>
- 
+
     </BrowserRouter>
 
     {/* <App /> */}

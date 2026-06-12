@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import spinner from '../assets/spinner.gif';
 import celogofullpng from '../assets/celogofull.png'; // Import the CivicEye Logo
 
-const CEMyComplaints = () => {
+export const CEMyComplaints = () => {
     const API = import.meta.env.VITE_BACKEND_HOST
     const navigate = useNavigate();
     const userid = localStorage.getItem('id'); // Get the user ID from local storage
@@ -330,5 +330,3 @@ const CEMyComplaints = () => {
         </div>
     );
 };
-
-export default CEMyComplaints;
