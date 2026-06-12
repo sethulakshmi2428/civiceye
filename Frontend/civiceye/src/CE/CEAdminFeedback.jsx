@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 export const CEAdminFeedback = () => {
+    const API = import.meta.env.VITE_BACKEND_HOST
     const navigate = useNavigate();
     const userId = localStorage.getItem('id');
 
@@ -19,7 +20,7 @@ export const CEAdminFeedback = () => {
     const fetchLoggedUserData = async () => {
         try {
             if (!userId) return;
-            const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userId}`);
+            const response = await axios.get(`${API}/user/viewuser/${userId}`);
             if (response) {
                 setLoggedUserData(response.data);
             }
@@ -49,7 +50,7 @@ export const CEAdminFeedback = () => {
     const [feedbacks, setfeedbacks] = useState('') // feedbacks state
     const fetchfeedbacks = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:6969/feedback/getall`);
+            const response = await axios.get(`${API}/feedback/getall`);
             if (response) {
                 console.log("R", response.data);
                 setfeedbacks(response.data);
@@ -74,7 +75,7 @@ export const CEAdminFeedback = () => {
 
     const handleStatusSubmit = async (feedbackId, newStatus) => {
         try {
-            const response = await axios.put(`http://127.0.0.1:6969/feedback/update/${feedbackId}`, {
+            const response = await axios.put(`${API}/feedback/update/${feedbackId}`, {
                 status: newStatus,
             });
 

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export const CEOfficialDashboard = () => {
+  const API = import.meta.env.VITE_BACKEND_HOST
   const navigate = useNavigate();
   const userId = localStorage.getItem('id');
 
@@ -19,7 +20,7 @@ export const CEOfficialDashboard = () => {
   const fetchLoggedUserData = async () => {
     try {
       if (!userId) return;
-      const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userId}`);
+      const response = await axios.get(`${API}/user/viewuser/${userId}`);
       if (response) {
         setLoggedUserData(response.data);
       }
@@ -68,7 +69,7 @@ export const CEOfficialDashboard = () => {
 
   const fetchComplaintStats = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:6969/complaint/stats");
+      const response = await axios.get(`${API}/complaint/stats`);
       if (response) {
         setStats(response.data.stats);
         console.log(response.data.stats);

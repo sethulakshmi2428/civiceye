@@ -12,7 +12,7 @@ app.use(cors())
 
 app.use("/user", userRouter)
 app.use("/complaint", complaintRouter)
-app.use("/feedback",feedbackRouter)
+app.use("/feedback", feedbackRouter)
 app.use('/proofs', express.static('proofs')); //  
 
 
@@ -20,7 +20,8 @@ const PORT = process.env.PORT || 4000
 
 connectdb().then(() => {
     app.listen(PORT, () => {
-        console.log("CE Backend Server Running on localhost PORT:",PORT);
+        console.log(`CE Backend Server Running on localhost http://127.0.0.1:${PORT}`)
+
     })
 })
 

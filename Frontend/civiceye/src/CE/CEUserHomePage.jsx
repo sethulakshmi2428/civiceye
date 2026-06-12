@@ -15,6 +15,7 @@ export const CEUserHomePage = () => {
 
     AOS.init(); // Initialize AOS Library
     const navigate = useNavigate();
+    const API = import.meta.env.VITE_BACKEND_HOST
     const userId = localStorage.getItem('id'); // Get the user id from local storage 
     const [searchParams] = useSearchParams();
 
@@ -56,7 +57,7 @@ export const CEUserHomePage = () => {
     const fetchUserData = async () => {
         try {
             if (!userId) return;
-            const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userId}`);
+            const response = await axios.get(`${API}/user/viewuser/${userId}`);
             if (response) {
                 setloggeduserdata(response.data);
             }
@@ -106,7 +107,7 @@ export const CEUserHomePage = () => {
         // console.log("FormData", formData);
 
         try {
-            const response = await axios.post(`http://127.0.0.1:6969/complaint/add`, formData,
+            const response = await axios.post(`${API}/complaint/add`, formData,
                 {
                     headers: { "Content-Type": "multipart/form-data" },
                 }
@@ -127,7 +128,7 @@ export const CEUserHomePage = () => {
     //feedback fetch
     const fetchfeedbacks = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:6969/feedback/getall`);
+            const response = await axios.get(`${API}/feedback/getall`);
             if (response) {
                 // console.log("R", response.data);
                 setfeedbacks(response.data);
@@ -155,7 +156,7 @@ export const CEUserHomePage = () => {
 
         try {
             console.table(feedbackPayload);
-            const response = await axios.post("http://127.0.0.1:6969/feedback/post", feedbackPayload);
+            const response = await axios.post(`${API}/feedback/post`, feedbackPayload);
             console.log(response);
             toast.success("Feedback submitted successfully!");
             setFeedbackData({ description: "" }); // Clear input after submission
@@ -189,7 +190,7 @@ export const CEUserHomePage = () => {
     const [stats, setStats] = useState(null); // Initially set to null
     const fetchComplaintStats = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:6969/complaint/stats");
+            const response = await axios.get(`${API}/complaint/stats`);
             if (response) {
                 // console.log(response.data.stats);
                 setStats(response.data.stats);

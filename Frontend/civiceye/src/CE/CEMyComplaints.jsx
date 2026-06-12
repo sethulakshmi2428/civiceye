@@ -5,6 +5,7 @@ import spinner from '../assets/spinner.gif';
 import celogofullpng from '../assets/celogofull.png'; // Import the CivicEye Logo
 
 const CEMyComplaints = () => {
+    const API = import.meta.env.VITE_BACKEND_HOST
     const navigate = useNavigate();
     const userid = localStorage.getItem('id'); // Get the user ID from local storage
 
@@ -25,7 +26,7 @@ const CEMyComplaints = () => {
     // Fetch complaints when the component mounts
     const fetchComplaints = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:6969/complaint/get/${userid}`);
+            const response = await axios.get(`${API}/complaint/get/${userid}`);
             console.log(response.data);
             setComplaints(response.data);
             setFilteredComplaints(response.data);

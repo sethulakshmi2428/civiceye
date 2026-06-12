@@ -14,6 +14,7 @@ export const CEGuestHomePage = () => {
 
     AOS.init(); // Initialize AOS Library
     const navigate = useNavigate();
+    const API = import.meta.env.VITE_BACKEND_HOST
     const userid = localStorage.getItem('id'); // Get the user id from local storage
     // console.log(userid);
 
@@ -44,7 +45,7 @@ export const CEGuestHomePage = () => {
     const [feedbacks, setfeedbacks] = useState('') // feedbacks state
     const fetchfeedbacks = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:6969/feedback/getall`);
+            const response = await axios.get(`${API}/feedback/getall`);
             if (response) {
                 // console.log("R", response.data);
                 setfeedbacks(response.data);
@@ -65,11 +66,11 @@ export const CEGuestHomePage = () => {
         fetchData();
     }, []);
 
-    //complaint stats 
+    //complaint stats  
     const [stats, setStats] = useState(null); // Initially set to null
     const fetchComplaintStats = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:6969/complaint/stats");
+            const response = await axios.get(`${API}/complaint/stats`);
             if (response) {
                 // console.log(response.data.stats);
                 setStats(response.data.stats);

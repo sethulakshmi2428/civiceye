@@ -7,6 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export const CEUserProfile = () => {
     const navigate = useNavigate();
+    const API = import.meta.env.VITE_BACKEND_HOST
     const [searchParams] = useSearchParams();
     const userid = localStorage.getItem('id');
 
@@ -40,7 +41,7 @@ export const CEUserProfile = () => {
     const fetchUserData = async () => {
         try {
             if (!userid) return;
-            const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userid}`);
+            const response = await axios.get(`${API}/user/viewuser/${userid}`);
             if (response) {
                 setFormData({
                     name: response.data.name || '',
@@ -72,7 +73,7 @@ export const CEUserProfile = () => {
     const submit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://127.0.0.1:6969/user/update/${userid}`, formData);
+            const response = await axios.put(`${API}/user/update/${userid}`, formData);
             toast.success(response.data.message);
             fetchUserData();
         } catch (error) {
@@ -84,7 +85,7 @@ export const CEUserProfile = () => {
     // Delete account
     const deleteAccount = async () => {
         try {
-            const response = await axios.delete(`http://127.0.0.1:6969/user/delete/${userid}`);
+            const response = await axios.delete(`${API}/user/delete/${userid}`);
             toast.success(response.data.message);
             setPopupOpen(false);
             logout();

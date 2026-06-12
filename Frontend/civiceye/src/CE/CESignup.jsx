@@ -6,6 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 export const CESignup = () => {
+  const API = import.meta.env.VITE_BACKEND_HOST
   const navigate = useNavigate();
   const [signindata, setsignindata] = useState('')
   const userId = localStorage.getItem('id'); // Get the user id from local storage 
@@ -25,7 +26,7 @@ export const CESignup = () => {
 
     try {
       console.table(signindata)
-      let response = await axios.post('http://127.0.0.1:6969/user/register', signindata)
+      let response = await axios.post(`${API}/user/register`, signindata)
       console.log(response.data);
       toast.success(response.data.message);
       setTimeout(() => {

@@ -7,7 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 export const CELogin = () => {
 
     const navigate = useNavigate();
-
+    const API = import.meta.env.VITE_BACKEND_HOST
     const userId = localStorage.getItem('id'); // Get the user id from local storage 
 
 
@@ -21,7 +21,7 @@ export const CELogin = () => {
         event.preventDefault()
         try {
             console.table(logindata)
-            const response = await axios.post('http://127.0.0.1:6969/user/login', logindata);
+            const response = await axios.post(`${API}/user/login`, logindata);
 
             console.log(response);
             // console.log(response.data.token);
@@ -38,7 +38,7 @@ export const CELogin = () => {
                 navigate('/home');
             }
             else if (response.data.role === 'official') {
-                navigate('/dash'); 
+                navigate('/dash');
             }
         }
         catch (error) {

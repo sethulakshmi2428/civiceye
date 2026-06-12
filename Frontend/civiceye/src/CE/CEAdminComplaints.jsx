@@ -8,6 +8,7 @@ import spinner from '../assets/spinner.gif';
 
 export const CEAdminComplaints = () => {
     const navigate = useNavigate();
+    const API = import.meta.env.VITE_BACKEND_HOST
     const userId = localStorage.getItem('id');
 
     useEffect(() => {
@@ -17,10 +18,11 @@ export const CEAdminComplaints = () => {
     }, []);
 
     const [loggedUserData, setLoggedUserData] = useState({}); // Loggedin user data
+
     const fetchLoggedUserData = async () => {
         try {
             if (!userId) return;
-            const response = await axios.get(`http://127.0.0.1:6969/user/viewuser/${userId}`);
+            const response = await axios.get(`${API}/user/viewuser/${userId}`);
             if (response) {
                 setLoggedUserData(response.data);
             }
@@ -33,7 +35,7 @@ export const CEAdminComplaints = () => {
     const fetchComplaintData = async () => {
         try {
             if (!userId) return;
-            const response = await axios.get(`http://127.0.0.1:6969/complaint/getall/${userId}`);
+            const response = await axios.get(`${API}/complaint/getall/${userId}`);
             if (response) {
                 // console.log(response.data);
                 // setcomplaintlist(response.data);
@@ -102,7 +104,7 @@ export const CEAdminComplaints = () => {
             return toast.error("Please select a status!");
         }
         try {
-            const response = await axios.put(`http://127.0.0.1:6969/complaint/update/${complaintId}`, {
+            const response = await axios.put(`${API}/complaint/update/${complaintId}`, {
                 status: updatedata.status,
             });
 
@@ -115,7 +117,7 @@ export const CEAdminComplaints = () => {
             console.error("Error updating status:", error);
             toast.error(error.response?.data?.message || "Update failed");
         }
-    };
+    };w
 
     const downloadProof = async (fileUrl) => {
         try {
