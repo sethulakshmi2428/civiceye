@@ -29,15 +29,22 @@ export const CEMyComplaints = () => {
         try {
             const response = await axios.get(`${API}/complaint/get/${userid}`);
             console.log(response.data);
-            setComplaints(response.data);
-            setFilteredComplaints(response.data);
-            setLoading(false);
+            setComplaints(response.data.map((item) => ({
+                ...item, proof: `${API}/${item.proof}`
+            })))
+            console.table(complaints);
+
+            setFilteredComplaints(response.data.map((item) => ({
+                ...item, proof: `${API}${item.proof}`
+            })));
         }
         catch (error) {
             console.error('Error fetching user data:', error);
+        }
+        finally {
             setLoading(false);
         }
-    };
+    }
 
     useEffect(() => {
         fetchComplaints();
