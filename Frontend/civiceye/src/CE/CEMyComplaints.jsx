@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import spinner from '../assets/spinner.gif';
 import celogofullpng from '../assets/celogofull.png'; // Import the CivicEye Logo
+import toast, { Toaster } from "react-hot-toast";
 
 export const CEMyComplaints = () => {
     const API = import.meta.env.VITE_BACKEND_HOST
@@ -58,6 +59,7 @@ export const CEMyComplaints = () => {
 
     const downloadProof = async (fileUrl) => {
         try {
+            console.log("Proof URL:", fileUrl);
             const response = await fetch(fileUrl);
             if (!response.ok) throw new Error("Failed to fetch file");
 
